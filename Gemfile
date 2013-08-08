@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'haml'
 gem 'haml-rails'
+gem 'rspec-rails', group: [:development, :test]
+gem 'factory_girl_rails', group: [:development, :test]
 
 group :development do
   gem 'annotate'
@@ -38,11 +40,6 @@ group :development do
   gem 'pry-plus'
   gem 'better_errors'
   gem 'binding_of_caller'
-end
-
-group :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
 end
 
 group :doc do
