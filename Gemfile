@@ -30,10 +30,14 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'haml'
 gem 'haml-rails'
-gem 'jquery-rails'
 
 group :development do
   gem 'annotate'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-plus'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

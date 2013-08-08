@@ -2,14 +2,24 @@
 %html
 %head
   %title
-    HealthpostFacebook</title>
+    Healthpost Facebook
+
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 
 %body
-  %p.notice
-    = notice
-  %p.alert
-    = alert
-  = yield
+  - if user_signed_in?
+    #login
+      = "Welcome, #{current_user.email}!"
+      = link_to 'Logout', destroy_user_session_path, method: 'DELETE'
+      - if current_user.provider_admin?
+        %br
+          = link_to "Administer #{current_user.provider.name}", admin_provider_path(current_user.provider)
+
+  #content
+    %p.notice
+      = notice
+    %p.alert
+      = alert
+    = yield

@@ -23,6 +23,9 @@ end
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  provider_id            :integer
+#  admin                  :boolean          default(FALSE)
+#  provider_admin         :boolean          default(FALSE)
 #  created_at             :datetime
 #  updated_at             :datetime
 #
