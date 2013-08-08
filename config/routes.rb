@@ -67,7 +67,7 @@ HealthpostFacebook::Application.routes.draw do
   #   end
 end
 #== Route Map
-# Generated on 07 Aug 2013 19:38
+# Generated on 08 Aug 2013 00:15
 #
 #                  new_user_session GET    /users/sign_in(.:format)                          devise/sessions#new
 #                      user_session POST   /users/sign_in(.:format)                          devise/sessions#create
@@ -84,7 +84,7 @@ end
 #                                   PATCH  /users(.:format)                                  devise/registrations#update
 #                                   PUT    /users(.:format)                                  devise/registrations#update
 #                                   DELETE /users(.:format)                                  devise/registrations#destroy
-#                              root GET    /                                                 provider#show
+#                              root GET    /                                                 providers#show
 #                             admin GET    /admin(.:format)                                  admin/main#show
 #                         providers GET    /providers(.:format)                              providers#index
 #                                   POST   /providers(.:format)                              providers#create

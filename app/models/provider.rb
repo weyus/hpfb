@@ -1,7 +1,9 @@
 class Provider < ActiveRecord::Base
-  has_one :provider_facebook_page
-  has_one :provider_display
+  has_one :provider_facebook_page, :dependent => :destroy
+  has_one :provider_display, :dependent => :destroy
   has_many :users
+
+  after_create :create_provider_display
 end
 
 # == Schema Information

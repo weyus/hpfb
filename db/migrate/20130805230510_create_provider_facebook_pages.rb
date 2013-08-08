@@ -1,6 +1,6 @@
 class CreateProviderFacebookPages < ActiveRecord::Migration
   def change
-    create_table :provider_facebooks do |t|
+    create_table :provider_facebook_pages do |t|
       t.integer :provider_id
       t.string :fb_page_id
 

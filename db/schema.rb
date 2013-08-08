@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130805231613) do
+ActiveRecord::Schema.define(version: 20130808025747) do
 
   create_table "provider_displays", force: true do |t|
-    t.integer  "provider_id"
+    t.integer  "provider_id",   null: false
     t.string   "scss_filename"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "provider_facebooks", force: true do |t|
-    t.integer  "provider_id"
-    t.string   "fb_page_id"
+  create_table "provider_facebook_pages", force: true do |t|
+    t.integer  "provider_id", null: false
+    t.string   "fb_page_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
