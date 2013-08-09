@@ -10,6 +10,9 @@
 # Ignore rvm config.
 /.ruby-*
 
+# Ignore provider specific stylesheets
+/app/assets/stylesheets/providers
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -17,3 +20,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore provider specific tmp files in spec directory
+/spec/tmp/Provider*

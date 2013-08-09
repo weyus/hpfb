@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-HealthpostFacebook::Application.config.secret_key_base = 'f2e73d438fb5afcfa79eafabd27e68711ee2023d50e95d8a3a54ae5a51b39cd2a17c2cf040b2cd8547d2a91e6027728ef38a42d84ddad02fe0499081adc01357'
+HealthpostFacebook::Application.config.secret_key_base = 'f2e73a438fb5afcfa79eafabd27e687118e2023d50e95d8a3af4ae5a51b39cd2a17c2cf040b2cd8547d2a91e6027728ef38a42e84ddad02fe0499081adc01357'

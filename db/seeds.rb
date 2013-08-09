@@ -11,7 +11,7 @@ User.destroy_all
 Provider.destroy_all
 
 #Healthpost admin user
-User.create(email: 'admin@healthpost.com', password: 'password')
+User.create(email: 'admin@healthpost.com', password: 'password', admin: true)
 
 #Providers
 memorial_hermann = Provider.create(name: 'Memorial Hermann')

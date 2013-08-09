@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'haml'
 gem 'haml-rails'
+
+gem 'formtastic', github: 'justinfrench/formtastic', branch: 'rails4beta'
+gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
+
 gem 'rspec-rails', group: [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
 

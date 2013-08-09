@@ -1,0 +1,1 @@
+Pry.hooks.add_hook(:before_eval, :reload_everything) {reload!} if Rails.env == 'development'
