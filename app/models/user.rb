@@ -2,10 +2,20 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :provider
+
+  def administerable_users
+    if admin?
+      User.where('1 = 1')
+    elsif provider_admin?
+      User.where(provider_id: provider_id)
+    else
+      User.where('1 = 0')
+    end
+  end
 end
 
 # == Schema Information

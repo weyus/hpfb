@@ -1,4 +1,8 @@
 ActiveAdmin.register User do
+  config.sort_order = 'admin DESC, provider_id, provider_admin DESC, email'
+
+  menu priority: 2
+
   index do
     column :email
     column :current_sign_in_at
@@ -17,9 +21,12 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
   controller do
     def permitted_params
       params.permit admin_user: [:email, :password, :password_confirmation]
     end
   end
+
+  scope_to :current_user, :association_method => :administerable_users
 end

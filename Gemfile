@@ -33,6 +33,7 @@ gem 'haml-rails'
 
 gem 'formtastic', github: 'justinfrench/formtastic', branch: 'rails4beta'
 gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
+gem 'draper'
 
 gem 'rspec-rails', group: [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
