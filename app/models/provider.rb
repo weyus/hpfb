@@ -4,6 +4,11 @@ class Provider < ActiveRecord::Base
   has_many :users
 
   after_create :create_provider_display
+  after_save {|provider| provider.provider_display.save if provider.provider_display.changed?}
+
+  delegate :scss_filename=, to: :provider_display
+
+  default_scope {order(:name)}
 end
 
 # == Schema Information
