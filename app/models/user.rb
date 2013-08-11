@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
       User.where('1 = 0')
     end
   end
+
+  #For ActiveAdmin to be able to display correctly in filters
+  def to_s
+    email
+  end
 end
 
 # == Schema Information

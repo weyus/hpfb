@@ -2,7 +2,7 @@ ActiveAdmin.register Provider do
   decorate_with ProviderDecorator
 
   #This doesn't appear to work with the decorator
-  #config.sort_order = 'name'
+  config.sort_order = 'name_asc'
 
   controller do
     def permitted_params
@@ -10,24 +10,20 @@ ActiveAdmin.register Provider do
     end
   end
 
-  form do |f|
-    f.inputs "Provider Details" do
-      f.input :name
-      f.input :scss_filename
-    end
-    f.actions
-  end
+  form partial: 'form'
 
   filter :name
   filter :users
 
   index do
     column :name
-    column :fb_page_id do |provider|
+    column :facebook_page do |provider|
       link_to provider.fb_page_id, "http://facebook.com/#{provider.fb_page_id}" if provider.fb_page_id
     end
     column :scss_filename
-    default_actions
+    actions do |provider|
+      link_to 'Link Facebook Page', 'http://cnn.com'
+    end
   end
 
   show do |provider|
