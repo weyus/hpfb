@@ -1,0 +1,15 @@
+= semantic_form_for [@provider] do |f|
+  = f.inputs "Provider Details" do
+    = f.input :name
+    - if f.object.fb_page_id
+      = f.input(:fb_page_id, label: 'Facebook Page', readonly: true)
+    - else
+      %li.string.input.optional.stringish#facebook_page_input
+        %label.label
+          Facebook Page
+        = link_to('Link Facebook Page', 'xyz')
+    = f.input :scss_filename
+  = f.actions do
+    = f.action :submit
+    %li.cancel
+      = link_to 'Cancel', providers_path
