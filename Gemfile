@@ -31,8 +31,8 @@ gem 'devise'
 gem 'haml'
 gem 'haml-rails'
 
-gem 'formtastic', github: 'justinfrench/formtastic', branch: 'rails4beta'
-gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
+gem 'formtastic'
+gem 'activeadmin', git: 'git://github.com/gregbell/active_admin', branch: 'rails4'
 gem 'draper'
 
 gem 'rspec-rails', group: [:development, :test]
