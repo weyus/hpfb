@@ -51,6 +51,7 @@ group :doc do
 end
 
 group :production do
+  gem 'rails_on_heroku'
   gem 'pg'
 end
 
