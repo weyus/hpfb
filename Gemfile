@@ -32,11 +32,11 @@ gem 'formtastic'
 gem 'activeadmin', git: 'git://github.com/gregbell/active_admin', branch: 'rails4'
 gem 'draper'
 
+gem 'sqlite3', group: [:development, :test]
 gem 'rspec-rails', group: [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
 
 group :development do
-  gem 'sqlite3'
   gem 'annotate'
   gem 'pry'
   gem 'pry-rails'
