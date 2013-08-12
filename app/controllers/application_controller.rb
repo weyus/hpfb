@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
 
-  def redirector
-    redirect_to current_user.admin? || current_user.provider_admin? ? dashboard_path : provider_path(current_user.provider_id)
+  def redirect
+    redirect_to current_user.admin? || current_user.provider_admin? ? dashboard_path : healthpost_path(current_user.provider_id)
   end
 end

@@ -93,7 +93,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  config.root_to = 'application#redirector'
+  config.root_to = 'application#redirect'
 
 
   # == Admin Comments

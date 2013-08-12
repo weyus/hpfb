@@ -13,5 +13,9 @@ FactoryGirl.define do
     factory :provider_admin do
       provider_admin true
     end
+
+    factory :provider_user do
+      association :provider, factory: :provider
+    end
   end
 end
