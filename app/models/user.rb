@@ -17,6 +17,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def administerable_providers
+    if admin?
+      Provider.where('1 = 1')
+    elsif provider_admin?
+      Provider.where(id: provider_id)
+    else
+      Provider.where('1 = 0')
+    end
+  end
+
   #For ActiveAdmin to be able to display correctly in filters
   def to_s
     email

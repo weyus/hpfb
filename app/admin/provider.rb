@@ -27,6 +27,8 @@ ActiveAdmin.register Provider do
     end
   end
 
+  scope_to :current_user, :association_method => :administerable_providers
+
   show do |provider|
     attributes_table do
       row :name

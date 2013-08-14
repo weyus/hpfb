@@ -95,7 +95,6 @@ ActiveAdmin.setup do |config|
   # Default:
   config.root_to = 'application#redirect'
 
-
   # == Admin Comments
   #
   # This allows your users to comment on any resource registered with Active Admin.
