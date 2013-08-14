@@ -1,5 +1,4 @@
 ActiveAdmin.setup do |config|
-
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -56,7 +55,7 @@ ActiveAdmin.setup do |config|
   # This setting changes the method which Active Admin calls
   # within the controller.
   config.authentication_method = :authenticate_user!
-
+  config.authorization_adapter = ActiveAdmin::CanCanAdapter
 
   # == Current User
   #
