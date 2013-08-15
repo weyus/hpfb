@@ -9,9 +9,6 @@ class HealthpostController < ApplicationController
     #Check that this is a valid call from a Facebook tab
     if (request.env['HTTP_REFERER'] =~ /facebook\.com\//) && params[:signed_request].present?
       response.headers.delete('X-Frame-Options')
-      response.headers.delete('X-XSS-Protection')
-      #response.headers['X-XSS-Protection'] = '0'
-      render js: "window.location.replace('#{root_url}');"
     else
       render status: :unprocessable_entity
     end
