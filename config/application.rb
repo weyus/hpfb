@@ -13,8 +13,12 @@ module HealthpostFacebook
     # -- all .rb files in that directory are automatically loaded.
 
     # This only works in Firefox currently, maybe we could use it when everyone else has caught up WG 08/14/13
+    # Better way to handle default headers per: https://coderwall.com/p/k7xlxa
     #config.action_dispatch.default_headers['X-Frame-Options'] = 'ALLOW-FROM https://www.facebook.com'
-    config.action_dispatch.default_headers.delete('X-Frame-Options')
+    config.action_dispatch.default_headers = {
+      'X-XSS-Protection' => '1; mode=block',
+      'X-Content-Type-Options' => 'nosniff'
+    }
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
