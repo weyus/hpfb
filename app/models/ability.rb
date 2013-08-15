@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     elsif user.provider_admin?
       can :manage, User
-      can [:read, :update], Provider
+      can [:read, :update, :link_facebook], Provider
     else
       can :read, :all
     end
