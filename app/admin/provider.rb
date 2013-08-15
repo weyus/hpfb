@@ -23,8 +23,7 @@ ActiveAdmin.register Provider do
     column :scss_filename
 
     actions do |provider|
-      link_to 'Link Facebook Page',
-              "https://www.facebook.com/dialog/pagetab?app_id=#{FACEBOOK_APP_ID}&redirect_uri=#{REDIRECT_URI}" if can? :link_facebook, provider
+      link_to 'Link Facebook Page', FACEBOOK_PAGE_INTEGRATION_LINK if can? :link_facebook, provider
     end
   end
 

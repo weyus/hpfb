@@ -3,7 +3,9 @@ HealthpostFacebook::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   get '/healthpost/:id' => 'healthpost#show', as: 'healthpost'
-  post '/' => 'healthpost#associate_fb_page'
+
+  #Facebook page tab integration
+  post '/' => 'healthpost#facebook_page'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -61,7 +63,7 @@ HealthpostFacebook::Application.routes.draw do
   #   end
 end
 #== Route Map
-# Generated on 12 Aug 2013 15:58
+# Generated on 14 Aug 2013 19:08
 #
 #       new_user_session GET        /users/login(.:format)            active_admin/devise/sessions#new
 #           user_session POST       /users/login(.:format)            active_admin/devise/sessions#create
@@ -72,7 +74,6 @@ end
 #                        PATCH      /users/password(.:format)         active_admin/devise/passwords#update
 #                        PUT        /users/password(.:format)         active_admin/devise/passwords#update
 #                   root GET        /                                 application#redirect
-#              dashboard GET        /dashboard(.:format)              dashboard#index
 # batch_action_providers POST       /providers/batch_action(.:format) providers#batch_action
 #              providers GET        /providers(.:format)              providers#index
 #                        POST       /providers(.:format)              providers#create
@@ -92,3 +93,4 @@ end
 #                        PUT        /users/:id(.:format)              users#update
 #                        DELETE     /users/:id(.:format)              users#destroy
 #             healthpost GET        /healthpost/:id(.:format)         healthpost#show
+#                        POST       /                                 healthpost#associate_fb_page

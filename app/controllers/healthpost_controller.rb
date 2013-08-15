@@ -5,7 +5,10 @@ class HealthpostController < ApplicationController
   def show
   end
 
-  def associate_fb_page
-    render text: 'Associated!'
+  def facebook_page
+    #Check that this is a valid call from a Facebook tab
+    return render status: :unprocessable_entity unless params[:signed_request]
+
+    redirect_to root_url
   end
 end
