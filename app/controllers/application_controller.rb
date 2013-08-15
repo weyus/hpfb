@@ -26,8 +26,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-  #If the request comes from Facebook, remove the X-Frame-Options header
+  #If the request comes from Facebook, remove the X-Frame-Options header. Only do this for the first request.
   def remove_x_frame_options_header
-    response.headers.delete('X-Frame-Options') if request.env['HTTP_REFERER'] =~ /facebook\.com\//
+    if session['fb_request']
+      response.headers.delete('X-Frame-Options')
+      session[:fb_request] = nil
+    end
   end
 end

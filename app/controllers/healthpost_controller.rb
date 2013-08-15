@@ -7,8 +7,11 @@ class HealthpostController < ApplicationController
 
   def facebook_page
     #Check that this is a valid call from a Facebook tab
-    return render status: :unprocessable_entity unless params[:signed_request]
-
-    redirect_to root_url
+    if (request.env['HTTP_REFERER'] =~ /facebook\.com\//) && params[:signed_request].present?
+      session['fb_request'] = true
+      redirect_to root_url
+    else
+      render status: :unprocessable_entity
+    end
   end
 end
