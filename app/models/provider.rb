@@ -9,6 +9,7 @@ class Provider < ActiveRecord::Base
   delegate :scss_filename=, to: :provider_display
 
   def associate_fb_page(page_id)
+    provider_facebook_page ||= create_provider_facebook_page
     provider_facebook_page.update_attribute(:fb_page_id, page_id)
   end
 end
