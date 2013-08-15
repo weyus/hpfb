@@ -28,6 +28,6 @@ class ApplicationController < ActionController::Base
 
   #If the request comes from Facebook, remove the X-Frame-Options header
   def remove_x_frame_options_header
-    response.headers.delete('X-Frame-Options') if request.env['HTTP_REFERER'] =~ /https:\/\/www\.facebook\.com\//
+    response.headers.delete('X-Frame-Options') if request.env['HTTP_REFERER'] =~ /facebook\.com\//
   end
 end
