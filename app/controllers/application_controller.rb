@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  after_filter :remove_x_frame_options_header
+  #after_filter :remove_x_frame_options_header
 
   def redirect
     if user_signed_in?
@@ -27,10 +27,10 @@ class ApplicationController < ActionController::Base
   private
 
   #If the request comes from Facebook, remove the X-Frame-Options header. Only do this for the first request.
-  def remove_x_frame_options_header
-    if session['fb_request']
-      response.headers.delete('X-Frame-Options')
-      session[:fb_request] = nil
-    end
-  end
+  #def remove_x_frame_options_header
+  #  if session['fb_request']
+  #
+  #    session[:fb_request] = nil
+  #  end
+  #end
 end
