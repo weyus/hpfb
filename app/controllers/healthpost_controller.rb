@@ -8,6 +8,7 @@ class HealthpostController < ApplicationController
   def facebook_page
     #Check that this is a valid call from a Facebook tab
     return render status: :unprocessable_entity unless params[:signed_request]
+    logger.info "Signed request: #{params[:signed_request]}"
 
     redirect_to root_url
   end
