@@ -7,6 +7,10 @@ class Provider < ActiveRecord::Base
   after_save {|provider| provider.provider_display.save if provider.provider_display.changed?}
 
   delegate :scss_filename=, to: :provider_display
+
+  def associate_fb_page(page_id)
+    provider_facebook_page.update_attribute(:fb_page_id, page_id)
+  end
 end
 
 # == Schema Information

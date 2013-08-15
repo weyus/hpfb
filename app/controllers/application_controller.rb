@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   def redirect
     if user_signed_in?
+      #Associate the Facebook page if a Facebook page association request comes in
+      if current_user.provider_admin? && params[:tabs_added]
+        current_user.provider.associate_fb_page(params[:tabs_added])
+      end
+
       redirect_target = if current_user.admin?
                           users_path
                         elsif current_user.provider_admin?
