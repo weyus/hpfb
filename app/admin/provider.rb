@@ -23,6 +23,7 @@ ActiveAdmin.register Provider do
     column :scss_filename
 
     actions do |provider|
+      br
       link_to 'Link Facebook Page', FACEBOOK_PAGE_INTEGRATION_LINK if can? :link_facebook, provider
     end
   end
