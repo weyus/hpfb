@@ -7,8 +7,10 @@
       %label.label
         Facebook Page
       - if page_id
-        = link_to page_id, "http://facebook.com/#{page_id}", target: '_blank'
+        = link_to page_id, "http://facebook.com/#{page_id}", target: '_blank', id: 'edit_page_link'
         = facebook_link
+        %br
+        (NOTE: You must detach the application from your existing Facebook page before updating your link)
       - else
         = facebook_link
     = f.input :scss_filename
