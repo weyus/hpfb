@@ -1,13 +1,16 @@
 = semantic_form_for [@provider] do |f|
+  - page_id = f.object.fb_page_id
+  - facebook_link = (can? :link_facebook, f.object) ? link_to('Link Facebook Page', facebook_page_integration_link) : 'Unable to link Facebook page'
   = f.inputs "Provider Details" do
     = f.input :name
-    - if f.object.fb_page_id
-      = f.input(:fb_page_id, label: 'Facebook Page', readonly: true)
-    - else
-      %li.string.input.optional.stringish#facebook_page_input
-        %label.label
-          Facebook Page
-        = link_to('Link Facebook Page', 'xyz')
+    %li.string.input.optional.stringish#facebook_page_input
+      %label.label
+        Facebook Page
+      - if page_id
+        = link_to page_id, "http://facebook.com/#{page_id}", target: '_blank'
+        = facebook_link
+      - else
+        = facebook_link
     = f.input :scss_filename
   = f.actions do
     = f.action :submit

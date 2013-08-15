@@ -18,13 +18,13 @@ ActiveAdmin.register Provider do
   index do
     column :name
     column :facebook_page do |provider|
-      link_to provider.fb_page_id, "http://facebook.com/#{provider.fb_page_id}" if provider.fb_page_id
+      link_to provider.fb_page_id, "http://facebook.com/#{provider.fb_page_id}", target: '_blank' if provider.fb_page_id
     end
     column :scss_filename
 
     actions do |provider|
       br
-      link_to 'Link Facebook Page', FACEBOOK_PAGE_INTEGRATION_LINK if can? :link_facebook, provider
+      link_to 'Link Facebook Page', facebook_page_integration_link if can? :link_facebook, provider
     end
   end
 
@@ -34,7 +34,7 @@ ActiveAdmin.register Provider do
     attributes_table do
       row :name
       row :fb_page_id do
-        link_to provider.fb_page_id, "http://facebook.com/#{provider.fb_page_id}" if provider.fb_page_id
+        link_to provider.fb_page_id, "http://facebook.com/#{provider.fb_page_id}", target: '_blank' if provider.fb_page_id
       end
       row :scss_filename
     end
