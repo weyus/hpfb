@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       #Associate the Facebook page if a Facebook page association request comes in
       if current_user.provider_admin? && params[:tabs_added]
+        params.permit(:tabs_added)
         current_user.provider.associate_fb_page(params[:tabs_added])
       end
 
