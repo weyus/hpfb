@@ -13,9 +13,9 @@
     #login
       = "Welcome, #{current_user.email}!"
       = link_to 'Logout', destroy_user_session_path, method: 'DELETE'
-      - if current_user.provider_admin?
-        %br
-          = link_to "Administer #{current_user.provider.name}", admin_provider_path(current_user.provider)
+      -#- if current_user.provider_admin?
+      -#  %br
+      -#    = link_to "Administer #{current_user.provider.name}", provider_path(current_user.provider)
 
   #content
     %p.notice
