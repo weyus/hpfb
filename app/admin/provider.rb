@@ -13,7 +13,7 @@ ActiveAdmin.register Provider do
   form partial: 'form'
 
   filter :name
-  filter :users
+  filter :users, collection: proc {current_user.administerable_users}
 
   index do
     column :name
