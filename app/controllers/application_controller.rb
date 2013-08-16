@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  #after_filter :remove_x_frame_options_header
 
+  #The "signed_in" logic is necessary to avoid an endless redirection loop
   def redirect
     if user_signed_in?
       #Associate the Facebook page if a Facebook page association request comes in
@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
         current_user.provider.associate_fb_page(params[:tabs_added].keys.first)
       end
 
+      #Redirect appropriately
       redirect_target = if current_user.admin?
                           users_path
                         elsif current_user.provider_admin?
@@ -23,14 +24,4 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
-
-  private
-
-  #If the request comes from Facebook, remove the X-Frame-Options header. Only do this for the first request.
-  #def remove_x_frame_options_header
-  #  if session['fb_request']
-  #
-  #    session[:fb_request] = nil
-  #  end
-  #end
 end

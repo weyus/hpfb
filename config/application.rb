@@ -11,6 +11,7 @@ module HealthpostFacebook
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # This only works in Firefox currently, maybe we could use it when everyone else has caught up WG 08/14/13
     #config.action_dispatch.default_headers['X-Frame-Options'] = 'ALLOW-FROM https://www.facebook.com'

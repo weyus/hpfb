@@ -34,6 +34,7 @@ gem 'formtastic'
 gem 'activeadmin', git: 'git://github.com/gregbell/active_admin', branch: 'rails4'
 gem 'draper'
 gem 'cancan'
+gem 'fb_graph'
 
 gem 'sqlite3', group: [:development, :test]
 gem 'rspec-rails', group: [:development, :test]

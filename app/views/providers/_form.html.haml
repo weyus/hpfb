@@ -10,7 +10,7 @@
         = link_to page_id, "http://facebook.com/#{page_id}", target: '_blank', id: 'edit_page_link'
         = facebook_link
         %br
-        (NOTE: You must detach the application from your existing Facebook page before updating your link)
+        (NOTE: Connections from the current page will be disallowed if you update the link to a new page)
       - else
         = facebook_link
     = f.input :scss_filename
