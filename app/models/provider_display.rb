@@ -16,8 +16,10 @@ class ProviderDisplay < ActiveRecord::Base
 
   def generate_display_scss
     scss_filename = "#{ProviderDisplay.display_scss_dir}/#{provider.name.gsub(/\s+/, '_')}.css.scss"
-    FileUtils.cp(ProviderDisplay.default_display_scss, scss_filename) unless File.exist?(scss_filename)
-    update_attribute(:scss_filename, scss_filename)
+    unless File.exist?(scss_filename)
+      FileUtils.cp(ProviderDisplay.default_display_scss, scss_filename)
+      update_attribute(:scss_filename, scss_filename)
+    end
   end
 
   def delete_display_scss
