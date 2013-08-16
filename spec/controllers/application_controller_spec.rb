@@ -5,6 +5,10 @@ describe ApplicationController do
 
   describe 'login' do
     describe 'redirecting without FB page cookies' do
+      after(:each) do
+        expect(flash[:alert]).to be_nil
+      end
+
       it 'should redirect to admin page correctly' do
         admin_user = FactoryGirl.create(:admin)
         sign_in admin_user
@@ -47,6 +51,7 @@ describe ApplicationController do
 
         get 'redirect'
 
+        expect(flash[:alert]).to be_nil
         response.should redirect_to users_path
       end
 
@@ -58,6 +63,7 @@ describe ApplicationController do
 
         get 'redirect'
 
+        expect(flash[:alert]).to be_nil
         response.should redirect_to providers_path
       end
 
@@ -69,6 +75,7 @@ describe ApplicationController do
 
         get 'redirect'
 
+        expect(flash[:alert]).to eq('Incorrect username or password')
         response.should redirect_to destroy_user_session_path
       end
 
@@ -80,6 +87,7 @@ describe ApplicationController do
 
         get 'redirect'
 
+        expect(flash[:alert]).to eq('Incorrect username or password')
         response.should redirect_to destroy_user_session_path
       end
 
@@ -91,6 +99,7 @@ describe ApplicationController do
 
         get 'redirect'
 
+        expect(flash[:alert]).to be_nil
         response.should redirect_to healthpost_path(id: provider_user.provider_id)
       end
 
@@ -102,6 +111,7 @@ describe ApplicationController do
 
         get 'redirect'
 
+        expect(flash[:alert]).to eq('Incorrect username or password')
         response.should redirect_to destroy_user_session_path
       end
     end
