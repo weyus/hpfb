@@ -2,6 +2,8 @@ ActiveAdmin.register User do
   config.sort_order = 'admin DESC, provider_id, provider_admin DESC, email'
 
   controller do
+    helper_method :current_user
+
     def permitted_params
       params.permit user: [:email, :password, :password_confirmation]
     end
@@ -10,10 +12,13 @@ ActiveAdmin.register User do
   filter :email
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs "User Details" do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :provider, collection: current_user.administerable_providers, include_blank: current_user.admin?
+      f.input :admin if current_user.admin?
+      f.input :provider_admin
     end
     f.actions
   end
