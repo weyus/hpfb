@@ -4,10 +4,8 @@ class ProviderDisplay < ActiveRecord::Base
   after_create :generate_display_scss
   before_destroy :delete_display_scss
 
-  cattr_writer :display_scss_dir
-
   def self.display_scss_dir
-    @@display_scss_dir ||= "#{Rails.root}/app/assets/stylesheets/providers"
+    @@display_scss_dir ||= (Rails.env == 'test' ? "#{Rails.root}/spec/tmp" : "#{Rails.root}/app/assets/stylesheets/providers")
   end
 
   def self.default_display_scss
@@ -18,11 +16,8 @@ class ProviderDisplay < ActiveRecord::Base
 
   def generate_display_scss
     scss_filename = "#{ProviderDisplay.display_scss_dir}/#{provider.name.gsub(/\s+/, '_')}.css.scss"
-
-    unless File.exist?(scss_filename)
-      FileUtils.cp(ProviderDisplay.default_display_scss, scss_filename)
-      update_attribute(:scss_filename, scss_filename)
-    end
+    FileUtils.cp(ProviderDisplay.default_display_scss, scss_filename) unless File.exist?(scss_filename)
+    update_attribute(:scss_filename, scss_filename)
   end
 
   def delete_display_scss

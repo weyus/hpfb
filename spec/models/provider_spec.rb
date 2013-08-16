@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Provider do
   it "should generate a new ProviderDisplay object upon creation" do
     ProviderDisplay.count.should == 0
-    ProviderDisplay.display_scss_dir = "#{Dir.pwd}/spec/tmp"
     FileUtils.rm(Dir.glob("#{ProviderDisplay.display_scss_dir}/*.scss"))
     Dir.glob("#{ProviderDisplay.display_scss_dir}/*.scss").size.should == 0
     File.new(ProviderDisplay.default_display_scss, "w")

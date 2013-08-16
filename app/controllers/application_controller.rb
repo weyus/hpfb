@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
       cookies.delete :page_admin
 
       #Put a message up if we denied entry - nice and vague
-      flash[:alert] = 'Incorrect username or password' if redirect_target == destroy_user_session_path
+      flash[:alert] = 'Invalid email or password.' if redirect_target == destroy_user_session_path
 
       redirect_to redirect_target
     else

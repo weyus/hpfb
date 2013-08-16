@@ -6,7 +6,7 @@ ActiveAdmin.register Provider do
 
   controller do
     def permitted_params
-      params.permit provider: [:name, :scss_filename]
+      params.permit provider: [:name]
     end
   end
 
@@ -20,10 +20,8 @@ ActiveAdmin.register Provider do
     column :facebook_page do |provider|
       link_to provider.fb_page_id, "http://facebook.com/#{provider.fb_page_id}", target: '_blank' if provider.fb_page_id
     end
-    column :scss_filename
 
     actions do |provider|
-      br
       link_to 'Link Facebook Page', facebook_page_integration_link if can? :link_facebook, provider
     end
   end
@@ -36,7 +34,6 @@ ActiveAdmin.register Provider do
       row :fb_page_id do
         link_to provider.fb_page_id, "http://facebook.com/#{provider.fb_page_id}", target: '_blank' if provider.fb_page_id
       end
-      row :scss_filename
     end
   end
 end
