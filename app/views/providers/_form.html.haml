@@ -1,18 +1,20 @@
 = semantic_form_for [@provider] do |f|
-  - page_id = f.object.fb_page_id
-  - facebook_link = (can? :link_facebook, f.object) ? link_to('Link Facebook Page', facebook_page_integration_link) : 'Unable to link Facebook page'
   = f.inputs "Provider Details" do
     = f.input :name
-    %li.string.input.optional.stringish#facebook_page_input
-      %label.label
-        Facebook Page
-      - if page_id
-        = link_to page_id, "http://facebook.com/#{page_id}", target: '_blank', id: 'edit_page_link'
-        = facebook_link
-        %br
-        (NOTE: Connections from the current page will be disallowed if you update the link to a new page)
-      - else
-        = facebook_link
+    - #Only allow linking to Facebook page on edit.
+    - unless f.object.new_record?
+      - page_id = f.object.fb_page_id
+      - facebook_link = (can? :link_facebook, f.object) ? link_to('Link Facebook Page', facebook_page_integration_link) : 'Unable to link Facebook page'
+      %li.string.input.optional.stringish#facebook_page_input
+        %label.label
+          Facebook Page
+        - if page_id
+          = link_to page_id, "http://facebook.com/#{page_id}", target: '_blank', id: 'edit_page_link'
+          = facebook_link
+          %br
+          (NOTE: Connections from the current page will be disallowed if you update the link to a new page)
+        - else
+          = facebook_link
   = f.actions do
     = f.action :submit
     %li.cancel

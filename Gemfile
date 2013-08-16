@@ -30,7 +30,6 @@ gem 'devise'
 gem 'haml'
 gem 'haml-rails'
 
-gem 'formtastic'
 gem 'activeadmin', git: 'git://github.com/gregbell/active_admin', branch: 'rails4'
 gem 'draper'
 gem 'cancan'

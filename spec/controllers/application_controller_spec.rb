@@ -75,7 +75,7 @@ describe ApplicationController do
 
         get 'redirect'
 
-        expect(flash[:alert]).to eq('Incorrect username or password')
+        expect(flash[:alert]).to eq(ApplicationController::INVALID_LOGIN_MESSAGE)
         response.should redirect_to destroy_user_session_path
       end
 
@@ -87,7 +87,7 @@ describe ApplicationController do
 
         get 'redirect'
 
-        expect(flash[:alert]).to eq('Incorrect username or password')
+        expect(flash[:alert]).to eq(ApplicationController::INVALID_LOGIN_MESSAGE)
         response.should redirect_to destroy_user_session_path
       end
 
@@ -111,7 +111,7 @@ describe ApplicationController do
 
         get 'redirect'
 
-        expect(flash[:alert]).to eq('Incorrect username or password')
+        expect(flash[:alert]).to eq(ApplicationController::INVALID_LOGIN_MESSAGE)
         response.should redirect_to destroy_user_session_path
       end
     end

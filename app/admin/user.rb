@@ -4,8 +4,14 @@ ActiveAdmin.register User do
   controller do
     helper_method :current_user
 
+    def update
+      params[:user].delete(:password) if params[:user][:password].blank?
+      params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
+      super
+    end
+
     def permitted_params
-      params.permit user: [:email, :password, :password_confirmation]
+      params.permit user: [:email, :password, :password_confirmation, :provider_id, :admin, :provider_admin]
     end
   end
 
@@ -14,8 +20,8 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "User Details" do
       f.input :email
-      f.input :password
-      f.input :password_confirmation
+      f.input :password, required: f.object.new_record?
+      f.input :password_confirmation, required: f.object.new_record?
       f.input :provider, collection: current_user.administerable_providers, include_blank: current_user.admin?
       f.input :admin if current_user.admin?
       f.input :provider_admin

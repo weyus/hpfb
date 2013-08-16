@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  INVALID_LOGIN_MESSAGE = 'Invalid email or password.'
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -25,7 +27,7 @@ class ApplicationController < ActionController::Base
       cookies.delete :page_admin
 
       #Put a message up if we denied entry - nice and vague
-      flash[:alert] = 'Invalid email or password.' if redirect_target == destroy_user_session_path
+      flash[:alert] = INVALID_LOGIN_MESSAGE if redirect_target == destroy_user_session_path
 
       redirect_to redirect_target
     else
