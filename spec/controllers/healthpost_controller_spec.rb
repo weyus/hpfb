@@ -9,7 +9,7 @@ describe HealthpostController do
 
         post 'facebook_page'
 
-        response.status.should == 422
+        expect(response.status).to eq(422)
       end
 
       it 'if the signed request is not present' do
@@ -17,7 +17,7 @@ describe HealthpostController do
 
         post 'facebook_page'
 
-        response.status.should == 422
+        expect(response.status).to eq(422)
       end
 
       it 'if the signed request data cannot be extracted' do
@@ -25,20 +25,22 @@ describe HealthpostController do
 
         post 'facebook_page', signed_request: 'crap'
 
-        response.status.should == 422
+        expect(response.status).to eq(422)
       end
     end
 
-    #describe 'should redirect' do
-    #  it 'if everything is in place' do
-    #    request.env['HTTP_REFERER'] = 'https://www.facebook.com/WesTestPage/app_633522773325102'
-    #    page_hash = {'id' => 1, 'admin' => true, 'liked' => false}
-    #    controller.stub(:get_fb_signed_request_data).and_return({'algorithm' => 'HMAC-SHA256', 'issued_at' => 1, 'page' => page_hash, 'user' => {}})
-    #
-    #    post 'facebook_page', signed_request: 'klqwheoiwyqfo723yo8y2io34h2i3'
-    #
-    #    response.should redirect_to '/' #Couldn't get route to include query parameters for some reason - blah.
-    #  end
-    #end
+    describe 'should render 200' do
+      it 'if everything is in place' do
+        request.env['HTTP_REFERER'] = 'https://www.facebook.com/WesTestPage/app_633522773325102'
+        page_hash = {id: 1, admin: true, liked: false}
+        controller.stub(:get_fb_signed_request_data).and_return({algorithm: 'HMAC-SHA256', issued_at: 1, page: page_hash, user: {}})
+
+        post 'facebook_page', signed_request: 'klqwheoiwyqfo723yo8y2io34h2i3'
+
+        expect(response.status).to eq(200)
+        expect(response.cookies['page_id']).to eq('1')
+        expect(response.cookies['page_admin']).to eq('true')
+      end
+    end
   end
 end
