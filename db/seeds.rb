@@ -19,8 +19,8 @@ memorial_hermann.users.create(email: 'healthpost_admin@memorialhermann.com', pas
 memorial_hermann.users.create(email: 'healthpost_user@memorialhermann.com', password: 'password')
 
 hca_gulf_coast = Provider.create(name: 'HCA Gulf Coast')
-hca_gulf_coast.users.create(email: 'healthpost_admin@hca_gulf_coast.com', password: 'password', provider_admin: true)
-hca_gulf_coast.users.create(email: 'healthpost_user@hca_gulf_coast.com', password: 'password')
+hca_gulf_coast.users.create(email: 'healthpost_admin@hcagulfcoast.com', password: 'password', provider_admin: true)
+hca_gulf_coast.users.create(email: 'healthpost_user@hcagulfcoast.com', password: 'password')
 
 methodist = Provider.create(name: 'Methodist')
 methodist.users.create(email: 'healthpost_admin@methodist.com', password: 'password', provider_admin: true)
