@@ -14,8 +14,8 @@
       = "Welcome, #{current_user.email}!"
       %br
       - #Weird, why is the client-side redirect necessary in order to pull the layout correctly? Some AA weirdness.
-      = link_to "Admin", "javascript: window.location = '/'" if current_user.admin? || current_user.provider_admin?
-      =# link_to "Admin", root_url if current_user.admin? || current_user.provider_admin?
+      = link_to "Admin", "javascript: window.location = '/'" unless current_user.regular_user?
+      =# link_to "Admin", root_url unless current_user.regular_user?
       = link_to 'Logout', destroy_user_session_path, method: 'DELETE'
 
   #content
