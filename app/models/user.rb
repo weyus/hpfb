@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
   def to_s
     email
   end
+
+  def regular_user?
+    (! admin?) && (! provider_admin?)
+  end
 end
 
 # == Schema Information

@@ -9,27 +9,26 @@ class ApplicationController < ActionController::Base
   #The "signed_in" logic is necessary to avoid an endless redirection loop
   def redirect
     if user_signed_in?
+      redirect_target = nil
+
       #Associate the Facebook page if a Facebook page association request comes in
       if current_user.provider_admin? && params[:tabs_added]
         current_user.provider.associate_fb_page(params[:tabs_added].keys.first)
+        redirect_target = healthpost_path(current_user.provider_id)
       end
 
-      #Redirect appropriately, with additional FB page permission checks if possible.
-      redirect_target = if current_user.admin?
-                          users_path
-                        elsif current_user.provider_admin?
-                          if came_from_facebook?
-                            check_provider_id && check_provider_admin ? healthpost_path(current_user.provider_id) : destroy_user_session_path
+      #Redirect appropriately, with additional FB page permission checks if necessary and possible.
+      redirect_target ||= if current_user.admin?
+                            users_path
+                          elsif came_from_facebook?
+                            if check_provider_id && ((current_user.provider_admin? && check_provider_admin) || current_user.regular_user?)
+                              healthpost_path(current_user.provider_id)
+                            else
+                              destroy_user_session_path
+                            end
                           else
-                            providers_path
+                            current_user.provider_admin? ? providers_path : healthpost_path(current_user.provider_id)
                           end
-                        else
-                          if came_from_facebook?
-                            check_provider_id ? healthpost_path(current_user.provider_id) : destroy_user_session_path
-                          else
-                            healthpost_path(current_user.provider_id)
-                          end
-                        end
 
       #Destroy the cookies
       cookies.delete :page_id
@@ -47,7 +46,7 @@ class ApplicationController < ActionController::Base
   private
 
   def came_from_facebook?
-    cookies[:page_id] && cookies[:page_admin]
+    (cookies[:page_id] && cookies[:page_admin])
   end
 
   def check_provider_id
