@@ -6,6 +6,7 @@ class Ability
 
     if user.admin?
       can :manage, :all
+      cannot :link_facebook, Provider
     elsif user.provider_admin?
       can :manage, User
       can [:read, :update, :link_facebook], Provider
