@@ -43,7 +43,7 @@ describe ApplicationController do
         expect(response.cookies[:page_admin]).to be_nil
       end
 
-      it 'should redirect to admin page correctly' do
+      it 'should redirect the admin to admin page correctly' do
         admin_user = FactoryGirl.create(:admin)
         request.cookies[:page_id] = 'x'
         request.cookies[:page_admin] = 'false'
@@ -55,7 +55,7 @@ describe ApplicationController do
         response.should redirect_to users_path
       end
 
-      it 'should redirect to provider admin page correctly with good cookies' do
+      it 'should redirect a provider admin to user facing page correctly with good cookies' do
         provider_admin = FactoryGirl.create(:provider_admin)
         request.cookies[:page_id] = provider_admin.provider.fb_page_id
         request.cookies[:page_admin] = 'true'
@@ -64,10 +64,10 @@ describe ApplicationController do
         get 'redirect'
 
         expect(flash[:alert]).to be_nil
-        response.should redirect_to providers_path
+        response.should redirect_to healthpost_path(id: provider_admin.provider_id)
       end
 
-      it 'should redirect to logout correctly with bad page_id cookie' do
+      it 'should redirect a provider_admin to logout correctly with bad page_id cookie' do
         provider_admin = FactoryGirl.create(:provider_admin)
         request.cookies[:page_id] = '123'
         request.cookies[:page_admin] = 'true'
@@ -79,7 +79,7 @@ describe ApplicationController do
         response.should redirect_to destroy_user_session_path
       end
 
-      it 'should redirect to logout correctly with bad page_admin cookie' do
+      it 'should redirect a provider_admin to logout correctly with bad page_admin cookie' do
         provider_admin = FactoryGirl.create(:provider_admin)
         request.cookies[:page_id] = provider_admin.provider.fb_page_id
         request.cookies[:page_admin] = 'false'
@@ -91,7 +91,7 @@ describe ApplicationController do
         response.should redirect_to destroy_user_session_path
       end
 
-      it 'should redirect to users provider page correctly with good cookies' do
+      it 'should redirect a user to users provider page correctly with good cookies' do
         provider_user = FactoryGirl.create(:provider_user)
         request.cookies[:page_id] = provider_user.provider.fb_page_id
         request.cookies[:page_admin] = 'false'
@@ -103,7 +103,7 @@ describe ApplicationController do
         response.should redirect_to healthpost_path(id: provider_user.provider_id)
       end
 
-      it 'should redirect to logout correctly with bad page_id cookie' do
+      it 'should redirect a user to logout correctly with bad page_id cookie' do
         provider_user = FactoryGirl.create(:provider_user)
         request.cookies[:page_id] = '123'
         request.cookies[:page_admin] = 'false'

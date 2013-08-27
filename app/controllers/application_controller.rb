@@ -18,9 +18,17 @@ class ApplicationController < ActionController::Base
       redirect_target = if current_user.admin?
                           users_path
                         elsif current_user.provider_admin?
-                          (check_provider_id && check_provider_admin) ? providers_path : destroy_user_session_path
+                          if came_from_facebook?
+                            check_provider_id && check_provider_admin ? healthpost_path(current_user.provider_id) : destroy_user_session_path
+                          else
+                            providers_path
+                          end
                         else
-                          check_provider_id ? healthpost_path(current_user.provider_id) : destroy_user_session_path
+                          if came_from_facebook?
+                            check_provider_id ? healthpost_path(current_user.provider_id) : destroy_user_session_path
+                          else
+                            healthpost_path(current_user.provider_id)
+                          end
                         end
 
       #Destroy the cookies
@@ -38,12 +46,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def came_from_facebook?
+    cookies[:page_id] && cookies[:page_admin]
+  end
+
   def check_provider_id
-    (! cookies[:page_id]) || (cookies[:page_id] == current_user.provider.fb_page_id)
+    cookies[:page_id] == current_user.provider.fb_page_id
   end
 
   def check_provider_admin
-    (! cookies[:page_admin]) || (cookies[:page_admin] == current_user.provider_admin?.to_s)
+    cookies[:page_admin] == current_user.provider_admin?.to_s
   end
 end
 

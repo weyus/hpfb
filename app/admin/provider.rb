@@ -22,7 +22,10 @@ ActiveAdmin.register Provider do
     end
 
     actions do |provider|
-      link_to 'Link Facebook Page', facebook_page_integration_link if can? :link_facebook, provider
+      if can? :link_facebook, provider
+        link_to('Link Facebook Page', facebook_page_integration_link, class: 'member_link') +
+        link_to('View User Site', healthpost_url(provider.id), class: 'member_link', target: '_blank')
+      end
     end
   end
 
